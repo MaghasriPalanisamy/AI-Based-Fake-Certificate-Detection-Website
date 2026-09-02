@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Verification History</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+background:#f5f7fb;
+}
+
+header{
+background:#1e3c72;
+color:white;
+padding:18px 40px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.container{
+width:90%;
+margin:40px auto;
+}
+
+.card{
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 8px 20px rgba(0,0,0,.1);
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+}
+
+table th{
+background:#1e3c72;
+color:white;
+padding:15px;
+}
+
+table td{
+padding:15px;
+text-align:center;
+border-bottom:1px solid #ddd;
+}
+
+.green{
+color:green;
+font-weight:bold;
+}
+
+.orange{
+color:orange;
+font-weight:bold;
+}
+
+.red{
+color:red;
+font-weight:bold;
+}
+
+.btn{
+
+display:inline-block;
+
+margin-top:25px;
+
+padding:12px 20px;
+
+background:#1e3c72;
+
+color:white;
+
+text-decoration:none;
+
+border-radius:8px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h2>Verification History</h2>
+
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<h2>Your Verification History</h2>
+
+<table>
+
+<tr>
+
+<th>Date</th>
+
+<th>Student</th>
+
+<th>Course</th>
+
+<th>Status</th>
+
+<th>Score</th>
+
+</tr>
+
+{% if history %}
+
+{% for item in history %}
+
+<tr>
+
+<td>{{ item["verified_at"] }}</td>
+
+<td>{{ item["student_name"] }}</td>
+
+<td>{{ item["course"] }}</td>
+
+<td>
+
+{% if "Genuine" in item["status"] %}
+
+<span class="green">{{ item["status"] }}</span>
+
+{% elif "Suspicious" in item["status"] %}
+
+<span class="orange">{{ item["status"] }}</span>
+
+{% else %}
+
+<span class="red">{{ item["status"] }}</span>
+
+{% endif %}
+
+</td>
+
+<td>{{ item["score"] }}%</td>
+
+</tr>
+
+{% endfor %}
+
+{% else %}
+
+<tr>
+
+<td colspan="5">
+
+No verification history found.
+
+</td>
+
+</tr>
+
+{% endif %}
+
+</table>
+
+<a href="/dashboard" class="btn">
+
+⬅ Dashboard
+
+</a>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

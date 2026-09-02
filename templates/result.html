@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Verification Result | CertiGuard Pro</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#eef2f7;
+}
+
+header{
+    background:#1e3c72;
+    color:white;
+    padding:20px 40px;
+}
+
+header h2{
+    margin:0;
+}
+
+.container{
+    width:90%;
+    max-width:1200px;
+    margin:30px auto;
+}
+
+.card{
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+}
+
+.status{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.status h1{
+    font-size:38px;
+}
+
+.score-circle{
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    background:#1e3c72;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin:20px auto;
+    font-size:45px;
+    font-weight:bold;
+}
+
+.subtitle{
+    text-align:center;
+    color:#666;
+    margin-bottom:30px;
+}
+
+.grid{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:25px;
+
+}
+
+.box{
+
+    background:#f8f9fc;
+
+    padding:20px;
+
+    border-radius:10px;
+
+}
+
+.box h3{
+
+    color:#1e3c72;
+
+    margin-bottom:15px;
+
+}
+
+.info p{
+
+    margin-bottom:10px;
+
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+table th{
+
+    background:#1e3c72;
+
+    color:white;
+
+    padding:12px;
+
+}
+
+table td{
+
+    padding:12px;
+
+    border-bottom:1px solid #ddd;
+
+}
+
+.pass{
+
+    color:green;
+
+    font-weight:bold;
+
+}
+
+.fail{
+
+    color:red;
+
+    font-weight:bold;
+
+}
+
+pre{
+
+    white-space:pre-wrap;
+
+    background:white;
+
+    padding:15px;
+
+    border-radius:8px;
+
+    border:1px solid #ddd;
+
+    max-height:300px;
+
+    overflow:auto;
+
+}
+
+.image{
+
+    text-align:center;
+
+}
+
+.image img{
+
+    max-width:100%;
+
+    border-radius:10px;
+
+    border:1px solid #ccc;
+
+}
+
+.actions{
+
+    margin-top:30px;
+
+    display:flex;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+}
+
+.btn{
+
+    background:#1e3c72;
+
+    color:white;
+
+    text-decoration:none;
+
+    padding:14px 25px;
+
+    border-radius:8px;
+
+}
+
+.btn:hover{
+
+    background:#16325c;
+
+}
+
+@media(max-width:900px){
+
+.grid{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h2>CertiGuard Pro</h2>
+
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<div class="status">
+
+<h1>{{ status }}</h1>
+
+</div>
+
+<div class="score-circle">
+
+{{ score }}%
+
+</div>
+
+<div class="subtitle">
+
+Confidence Score
+
+</div>
+
+<div class="grid">
+
+<div class="box">
+
+<h3>Certificate Information</h3>
+
+<div class="info">
+
+<p><strong>Detected Organization:</strong> {{ organization if organization else "Unknown" }}</p>
+
+<p><strong>Student Name:</strong> {{ student_name }}</p>
+
+<p><strong>Course:</strong> {{ course }}</p>
+
+<p><strong>Issue Date:</strong> {{ issue_date }}</p>
+
+</div>
+
+</div>
+
+<div class="box">
+
+<h3>Verification Breakdown</h3>
+
+<table>
+
+<tr>
+
+<th>Check</th>
+
+<th>Status</th>
+
+<th>Marks</th>
+
+</tr>
+
+{% for check, passed, marks in checks %}
+
+<tr>
+
+<td>{{ check }}</td>
+
+<td>
+
+{% if passed %}
+
+<span class="pass">Passed</span>
+
+{% else %}
+
+<span class="fail">Failed</span>
+
+{% endif %}
+
+</td>
+
+<td>{{ marks }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+</div>
+
+<br><br>
+
+<div class="grid">
+
+<div class="box">
+
+<h3>OCR Extracted Text</h3>
+
+<pre>{{ extracted_text }}</pre>
+
+</div>
+
+<div class="box image">
+
+<h3>Uploaded Certificate</h3>
+
+<img src="{{ url_for('static', filename='uploads/' + uploaded_image) }}" alt="Certificate">
+
+</div>
+
+</div>
+
+<div class="actions">
+
+<a href="/upload" class="btn">Verify Another Certificate</a>
+
+<a href="/dashboard" class="btn">Dashboard</a>
+
+<a href="/history" class="btn">History</a>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

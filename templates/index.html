@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CertiGuard Pro</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:#f4f7fb;
+}
+
+/* Navigation */
+
+nav{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:20px 8%;
+
+background:#1e3c72;
+
+color:white;
+
+}
+
+nav h2{
+
+font-size:30px;
+
+}
+
+nav ul{
+
+display:flex;
+
+list-style:none;
+
+gap:30px;
+
+}
+
+nav a{
+
+text-decoration:none;
+
+color:white;
+
+font-size:17px;
+
+}
+
+.btn{
+
+padding:10px 22px;
+
+background:white;
+
+color:#1e3c72;
+
+border-radius:8px;
+
+font-weight:bold;
+
+}
+
+/* Hero */
+
+.hero{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:80px 8%;
+
+}
+
+.hero-text{
+
+width:50%;
+
+}
+
+.hero-text h1{
+
+font-size:50px;
+
+color:#1e3c72;
+
+margin-bottom:20px;
+
+}
+
+.hero-text p{
+
+font-size:18px;
+
+color:#555;
+
+line-height:30px;
+
+margin-bottom:30px;
+
+}
+
+.hero-text a{
+
+text-decoration:none;
+
+padding:15px 30px;
+
+background:#1e3c72;
+
+color:white;
+
+border-radius:8px;
+
+}
+
+.hero img{
+
+width:450px;
+
+}
+
+/* Features */
+
+.features{
+
+padding:80px 8%;
+
+text-align:center;
+
+}
+
+.features h2{
+
+font-size:38px;
+
+color:#1e3c72;
+
+margin-bottom:50px;
+
+}
+
+.cards{
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:25px;
+
+}
+
+.card{
+
+background:white;
+
+padding:30px;
+
+border-radius:12px;
+
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+
+transition:.3s;
+
+}
+
+.card:hover{
+
+transform:translateY(-8px);
+
+}
+
+.card i{
+
+font-size:55px;
+
+color:#1e3c72;
+
+margin-bottom:20px;
+
+}
+
+.card h3{
+
+margin-bottom:15px;
+
+}
+
+/* Footer */
+
+footer{
+
+margin-top:80px;
+
+background:#1e3c72;
+
+color:white;
+
+text-align:center;
+
+padding:30px;
+
+}
+
+@media(max-width:900px){
+
+.hero{
+
+flex-direction:column;
+
+text-align:center;
+
+}
+
+.hero-text{
+
+width:100%;
+
+margin-bottom:40px;
+
+}
+
+.hero img{
+
+width:100%;
+
+max-width:400px;
+
+}
+
+.cards{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav>
+
+<h2>CertiGuard Pro</h2>
+
+<ul>
+
+<li><a href="#features">Features</a></li>
+
+<li><a href="{{ url_for('auth.login') }}">Login</a></li>
+
+<li><a class="btn" href="{{ url_for('auth.register') }}">Register</a></li>
+
+</ul>
+
+</nav>
+
+<section class="hero">
+
+<div class="hero-text">
+
+<h1>AI Powered Certificate Verification</h1>
+
+<p>
+
+Verify certificates instantly using OCR,
+QR Code Verification,
+Logo Detection,
+Template Matching,
+Signature Verification
+and AI Confidence Scoring.
+
+</p>
+
+<a href="{{ url_for('auth.login') }}">
+
+Get Started
+
+</a>
+
+</div>
+
+<div class="hero">
+
+<img src="{{ url_for('static',filename='images/hero.png') }}">
+
+</div>
+
+</section>
+
+<section class="features" id="features">
+
+<h2>Our Features</h2>
+
+<div class="cards">
+
+<div class="card">
+
+<i class="fa fa-qrcode"></i>
+
+<h3>QR Verification</h3>
+
+<p>
+
+Reads QR codes and validates certificate data.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<i class="fa fa-file-alt"></i>
+
+<h3>OCR Extraction</h3>
+
+<p>
+
+Extracts certificate information automatically.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<i class="fa fa-shield-alt"></i>
+
+<h3>AI Verification</h3>
+
+<p>
+
+Generates confidence score with fake detection.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<i class="fa fa-certificate"></i>
+
+<h3>Template Matching</h3>
+
+<p>
+
+Matches certificate against reference templates.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<i class="fa fa-image"></i>
+
+<h3>Logo Detection</h3>
+
+<p>
+
+Verifies official organization logos.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<i class="fa fa-chart-line"></i>
+
+<h3>Verification Report</h3>
+
+<p>
+
+Displays percentage score with detailed analysis.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+<h3>CertiGuard Pro © 2026</h3>
+
+<p>
+
+AI Based Fake Certificate Detection System
+
+</p>
+
+</footer>
+
+</body>
+
+</html>

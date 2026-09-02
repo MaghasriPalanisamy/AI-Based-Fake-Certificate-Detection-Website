@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Upload Certificate</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#f4f6f9;
+}
+
+header{
+    background:#1e3c72;
+    color:white;
+    padding:18px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+header h2{
+    font-size:28px;
+}
+
+.container{
+    width:90%;
+    max-width:700px;
+    margin:50px auto;
+}
+
+.upload-box{
+
+    background:white;
+
+    padding:40px;
+
+    border-radius:15px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.1);
+
+    text-align:center;
+
+}
+
+.upload-box h1{
+
+    color:#1e3c72;
+
+    margin-bottom:15px;
+
+}
+
+.upload-box p{
+
+    color:#666;
+
+    margin-bottom:30px;
+
+}
+
+input[type=file]{
+
+    width:100%;
+
+    padding:20px;
+
+    border:2px dashed #1e3c72;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    margin-bottom:25px;
+
+}
+
+button{
+
+    background:#1e3c72;
+
+    color:white;
+
+    border:none;
+
+    padding:15px 40px;
+
+    font-size:18px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+}
+
+button:hover{
+
+    background:#16325c;
+
+}
+
+.back{
+
+    display:inline-block;
+
+    margin-top:25px;
+
+    text-decoration:none;
+
+    color:#1e3c72;
+
+}
+
+.loading{
+
+    display:none;
+
+    margin-top:30px;
+
+}
+
+.loader{
+
+    width:60px;
+
+    height:60px;
+
+    border:6px solid #ddd;
+
+    border-top:6px solid #1e3c72;
+
+    border-radius:50%;
+
+    animation:spin 1s linear infinite;
+
+    margin:auto;
+
+}
+
+@keyframes spin{
+
+    100%{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h2>CertiGuard Pro</h2>
+
+</header>
+
+<div class="container">
+
+<div class="upload-box">
+
+<h1>Upload Certificate</h1>
+
+<p>
+
+Supported Files
+
+<br>
+
+PDF • JPG • PNG • JPEG
+
+</p>
+
+<form
+action="/verify"
+method="POST"
+enctype="multipart/form-data"
+onsubmit="showLoading()">
+
+<input
+type="file"
+name="certificate"
+required>
+
+<br>
+
+<button type="submit">
+
+Verify Certificate
+
+</button>
+
+</form>
+
+<div class="loading" id="loading">
+
+<div class="loader"></div>
+
+<br>
+
+<p>
+
+Analyzing Certificate...
+
+</p>
+
+</div>
+
+<a href="/dashboard" class="back">
+
+⬅ Back to Dashboard
+
+</a>
+
+</div>
+
+</div>
+
+<script>
+
+function showLoading(){
+
+document.getElementById("loading").style.display="block";
+
+}
+
+</script>
+
+</body>
+
+</html>

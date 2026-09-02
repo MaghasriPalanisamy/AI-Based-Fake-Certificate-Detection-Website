@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | CertiGuard Pro</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial,Helvetica,sans-serif;
+        }
+
+        body{
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background:linear-gradient(135deg,#1e3c72,#2a5298);
+        }
+
+        .login-box{
+            width:400px;
+            background:white;
+            border-radius:15px;
+            padding:35px;
+            box-shadow:0 10px 25px rgba(0,0,0,.2);
+        }
+
+        h1{
+            text-align:center;
+            margin-bottom:10px;
+            color:#1e3c72;
+        }
+
+        p{
+            text-align:center;
+            color:#666;
+            margin-bottom:25px;
+        }
+
+        label{
+            display:block;
+            margin-top:15px;
+            margin-bottom:5px;
+            font-weight:bold;
+        }
+
+        input{
+            width:100%;
+            padding:12px;
+            border:1px solid #ccc;
+            border-radius:8px;
+            font-size:15px;
+        }
+
+        button{
+            width:100%;
+            margin-top:25px;
+            padding:12px;
+            border:none;
+            background:#1e3c72;
+            color:white;
+            font-size:17px;
+            border-radius:8px;
+            cursor:pointer;
+        }
+
+        button:hover{
+            background:#16325c;
+        }
+
+        .register{
+            margin-top:20px;
+            text-align:center;
+        }
+
+        .register a{
+            color:#1e3c72;
+            text-decoration:none;
+            font-weight:bold;
+        }
+
+        .flash{
+            background:#ffe9b3;
+            color:#7a5d00;
+            padding:10px;
+            border-radius:5px;
+            margin-bottom:15px;
+            text-align:center;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="login-box">
+
+    <h1>CertiGuard Pro</h1>
+
+    <p>Login to Continue</p>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+            <div class="flash">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+
+        <label>Email</label>
+
+        <input
+            type="email"
+            name="email"
+            placeholder="Enter your email"
+            required>
+
+        <label>Password</label>
+
+        <input
+            type="password"
+            name="password"
+            placeholder="Enter your password"
+            required>
+
+        <button type="submit">
+            Login
+        </button>
+
+    </form>
+
+    <div class="register">
+
+        Don't have an account?
+
+        <a href="{{ url_for('auth.register') }}">
+            Register
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>
